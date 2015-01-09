@@ -28,6 +28,14 @@ ffi.cdef("""
     void modbus_set_float(float f, uint16_t *dest);
 
     modbus_t* modbus_new_tcp(const char *ip_address, int port);
+
+    modbus_t* modbus_new_rtu(const char *device, int baud, char parity, int data_bit, int stop_bit);
+
+    int modbus_rtu_set_serial_mode(modbus_t *ctx, int mode);
+    int modbus_rtu_get_serial_mode(modbus_t *ctx);
+    int modbus_rtu_set_rts(modbus_t *ctx, int mode);
+    int modbus_rtu_get_rts(modbus_t *ctx);
+
 """)
 C = ffi.dlopen('modbus')
 
@@ -111,3 +119,19 @@ class ModbusCore(object):
     def write_registers(self, addr, data):
         nb = len(data)
         self._run(C.modbus_write_registers, addr, nb, data)
+
+    def rtu_set_serial_mode(self, mode):
+        self._run(C.modbus_rtu_set_serial_mode, mode)
+
+    def rtu_get_serial_mode(self):
+        dest = ffi.new("uint16_t[]", 1)
+        self._run(C.modbus_rtu_get_serial_mode, dest)
+        return dest
+
+    def rtu_set_rts(self, mode):
+        self._run(C.modbus_rtu_set_rts, mode)
+
+    def rtu_get_rts(self):
+        dest = ffi.new("uint16_t[]", 1)
+        self._run(C.modbus_rtu_get_rts, dest)
+        return dest
