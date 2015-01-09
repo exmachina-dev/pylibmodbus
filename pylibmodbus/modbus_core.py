@@ -124,7 +124,7 @@ class ModbusCore(object):
         self._run(C.modbus_rtu_set_serial_mode, mode)
 
     def rtu_get_serial_mode(self):
-        dest = ffi.new("uint16_t[]", 1)
+        dest = ffi.new("uint8_t")
         self._run(C.modbus_rtu_get_serial_mode, dest)
         return dest
 
@@ -132,6 +132,6 @@ class ModbusCore(object):
         self._run(C.modbus_rtu_set_rts, mode)
 
     def rtu_get_rts(self):
-        dest = ffi.new("uint16_t[]", 1)
+        dest = ffi.new("uint8_t")
         self._run(C.modbus_rtu_get_rts, dest)
         return dest
