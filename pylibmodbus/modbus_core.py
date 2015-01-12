@@ -122,6 +122,7 @@ class ModbusCore(object):
         self._run(C.modbus_write_registers, addr, nb, data)
 
     def rtu_set_serial_mode(self, mode):
+        # int
         self._run(C.modbus_rtu_set_serial_mode, mode)
 
     def rtu_get_serial_mode(self):
@@ -130,6 +131,7 @@ class ModbusCore(object):
         return dest
 
     def rtu_set_rts(self, mode):
+        # int
         self._run(C.modbus_rtu_set_rts, mode)
 
     def rtu_get_rts(self):
