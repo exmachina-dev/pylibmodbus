@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 # Copyright (c) 2013, Stéphane Raimbault <stephane.raimbault@gmail.com>
+# Copyright (c) 2015, Benoit Rapidel <benoit.rapidel@exmachina.fr>
 
 from __future__ import division
 
