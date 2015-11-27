@@ -13,7 +13,7 @@ __libs = ('/usr/local/lib/libmodbus.so',
 
 for lib in __libs:
     try:
-        C = ctypes.CDLL(lib, use_errno=True )
+        C = ctypes.CDLL( lib, use_errno=True )
         break
     except:
         pass
@@ -86,6 +86,9 @@ class ModbusCore( object ):
         dest = [dest[i] for i in range( nb )]
         return dest
 
+    def read_bit( self, addr ):
+        dest = self.read_bits( addr, 1 )
+        return dest[0]
 
     def read_input_bits( self, addr, nb ):
         dest = ( ctypes.c_uint8 * nb )()
