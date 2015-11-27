@@ -97,6 +97,9 @@ class ModbusCore( object ):
         dest = [dest[i] for i in range( nb )]
         return dest
 
+    def read_input_bit( self, addr ):
+        dest = self.read_input_bits( addr, 1 )
+        return dest[0]
 
     def read_registers( self, addr, nb ):
         dest = ( ctypes.c_uint16 * nb )()
