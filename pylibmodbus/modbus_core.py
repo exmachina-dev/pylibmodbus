@@ -7,7 +7,17 @@ from __future__ import division
 import ctypes
 import struct
 
-C = ctypes.CDLL( '/usr/local/lib/libmodbus.so', use_errno=True )
+__libs = ('/usr/local/lib/libmodbus.so',
+          '/usr/lib/libmodbus.so',
+          '/usr/lib/arm-linux-gnueabihf/libmodbus.so.5')
+
+for lib in __libs:
+    try:
+        C = ctypes.CDLL(lib, use_errno=True )
+        break
+    except:
+        pass
+
 C.modbus_strerror.restype = ctypes.c_char_p
 C.modbus_get_float.restype = ctypes.c_float
 C.modbus_set_float.argtypes = [ctypes.c_float, ctypes.c_void_p]
