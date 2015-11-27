@@ -83,7 +83,7 @@ class ModbusCore( object ):
         dest = ( ctypes.c_uint8 * nb )()
         ctypes.cast( dest, ctypes.POINTER( ctypes.c_uint8 ) )
         self._run( C.modbus_read_bits, addr, nb, dest )
-        dest = [dest[i] for i in xrange( nb )]
+        dest = [dest[i] for i in range( nb )]
         return dest
 
 
@@ -91,7 +91,7 @@ class ModbusCore( object ):
         dest = ( ctypes.c_uint8 * nb )()
         ctypes.cast( dest, ctypes.POINTER( ctypes.c_uint8 ) )
         self._run( C.modbus_read_input_bits, addr, nb, dest )
-        dest = [dest[i] for i in xrange( nb )]
+        dest = [dest[i] for i in range( nb )]
         return dest
 
 
@@ -99,7 +99,7 @@ class ModbusCore( object ):
         dest = ( ctypes.c_uint16 * nb )()
         ctypes.cast( dest, ctypes.POINTER( ctypes.c_uint16 ) )
         self._run( C.modbus_read_registers, addr, nb, dest )
-        dest = [dest[i] for i in xrange( nb )]
+        dest = [dest[i] for i in range( nb )]
         return dest
 
 
@@ -107,7 +107,7 @@ class ModbusCore( object ):
         dest = ( ctypes.c_uint16 * nb )()
         ctypes.cast( dest, ctypes.POINTER( ctypes.c_uint16 ) )
         self._run( C.modbus_read_input_registers, addr, nb, dest )
-        dest = [dest[i] for i in xrange( nb )]
+        dest = [dest[i] for i in range( nb )]
         return dest
 
 
@@ -139,7 +139,7 @@ class ModbusCore( object ):
         ctypes.cast( dest, ctypes.POINTER( ctypes.c_uint16 ) )
 
         self._run( C.modbus_write_and_read_registers, write_addr, len( data ), data, read_addr, read_nb, dest )
-        dest = [dest[i] for i in xrange( read_nb )]
+        dest = [dest[i] for i in range( read_nb )]
         return dest
 
 
