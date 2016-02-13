@@ -52,7 +52,7 @@ class ModbusCore(object):
     def _run(self, func, *args):
         rc = func(self.ctx, *args)
         if rc == -1:
-            raise Exception(C.modbus_strerror(ctypes.get_errno()))
+            raise ModbusException(C.modbus_strerror(ctypes.get_errno()))
 
     def connect(self):
         return self._run(C.modbus_connect)
